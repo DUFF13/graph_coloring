@@ -6,6 +6,10 @@ Ce projet est une implémentation de l'algorithme DSATUR pour la coloration de g
 
 - **Représentation des Graphes** : Utilisation de listes d'adjacence pour représenter les graphes.
 - **Algorithme DSATUR** : Implémentation efficace pour la coloration de graphes.
+- **Solveur SAT** :
+  - Réduction du problème de coloration en une formule CNF.
+  - Résolution des formules CNF via les algorithmes **Quine** et **DPLL**.
+  - Recherche automatique du plus petit nombre \(k\) de couleurs permettant une coloration valide.
 - **Gestion de Fichiers** : Capacité à lire des données de graphes depuis des fichiers `.col`.
 
 ## Structure du projet
@@ -27,6 +31,15 @@ Ce projet est une implémentation de l'algorithme DSATUR pour la coloration de g
 │   ├── XXX.col
 ├── version_intermediaire
 │   ├── dsatur_glouton.ml
+├── satColoring
+│   ├── quine_dpll.ml
+│   ├── quine_dpll.mli
+│   ├── sat_solver.ml
+│   ├── sat_solver.mli
+│   ├── dimacs_to_cnf.ml
+│   ├── dimacs_to_cnf.mli
+│   ├── sat_solver.ml
+│   ├── sat_solver.mli
 ├── .gitignore
 ├── Makefile
 ├── README.md
@@ -90,6 +103,14 @@ Le fichier `Makefile` est conçu pour simplifier la compilation et l'exécution 
   ```
 
 Les dépendances dans le `Makefile` garantissent que les fichiers sont compilés dans le bon ordre, en fonction des relations entre modules (par exemple, `graph.ml` avant `dsatur.ml`).
+
+Pour utiliser les algorithmes SAT sur vos graphes, compilez les fichiers du répertoire `satColoring` Par exemple :
+(Il faut indiquer soi-même le graphe que l'on souhaite tester dans le fichier main_bis.ml et faire preuve de patience ...)
+
+```bash
+ocamlc -o sat_solver_program satcoloring/sat_solver.ml satcoloring/quine_dpll.ml satcoloring/dimacs_to_cnf.ml main_bis.ml
+./sat_solver_program
+```
 
 ## Fichier `graphes_utilises.txt`
 
