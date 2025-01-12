@@ -8,7 +8,7 @@ Ce projet est une implémentation de l'algorithme DSATUR pour la coloration de g
 - **Algorithme DSATUR** : Implémentation efficace pour la coloration de graphes.
 - **Gestion de Fichiers** : Capacité à lire des données de graphes depuis des fichiers `.col`.
 
-## Structure des Répertoires
+## Structure du projet
 
 ```
 .
@@ -29,7 +29,9 @@ Ce projet est une implémentation de l'algorithme DSATUR pour la coloration de g
 │   ├── dsatur_glouton.ml
 ├── .gitignore
 ├── Makefile
-└── README.md
+├── README.md
+└── graphes_utilises.txt
+
 
 ```
 
@@ -88,4 +90,20 @@ Le fichier `Makefile` est conçu pour simplifier la compilation et l'exécution 
   ```
 
 Les dépendances dans le `Makefile` garantissent que les fichiers sont compilés dans le bon ordre, en fonction des relations entre modules (par exemple, `graph.ml` avant `dsatur.ml`).
+
+## Fichier `graphes_utilises.txt`
+
+Les graphes utilisés pour ce projet ont été récupérés à partir du site suivant : [Graph Coloring Instances](https://mat.tepper.cmu.edu/COLOR/instances.html#XXLAT%3ELAT%3C/A%3E%20(Caution:%203%20MB!)%3Cli%3E%3CA%20HREF=).
+
+Un fichier intitulé `graphes_utilises.txt` a été ajouté pour répertorier les graphes utilisés dans ce projet. Voici un exemple des informations qu'il contient :
+
+```
+fpsol2.i.1.col (496,11654), 65, REG
+fpsol2.i.2.col (451,8691), 30, REG
+fpsol2.i.3.col (425,8688), 30, REG
+inithx.i.1.col (864,18707), 54, REG
+...
+```
+
+Ce fichier liste le nom des graphes, leurs dimensions (nœuds, arêtes), leurs caractéristiques (comme le nombre de couleurs minimal), et leur origine. Vous pouvez le consulter pour plus de détails sur les données de test.
 
