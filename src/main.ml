@@ -33,9 +33,48 @@ let test_graphes () =
     | Some n when n > 0 && n <= Array.length graphes ->
       let (nom, graphe) = graphes.(n - 1) in
       Printf.printf "Test du graphe : %s\n" nom;
+      let start_time = Sys.time () in
       let nb_couleurs = dsatur_with_tas graphe in
+      let end_time = Sys.time () in
       Printf.printf "Nombre de couleurs utilisées : %d\n" nb_couleurs;
+      Printf.printf "Temps d'exécution : %.6f secondes\n" (end_time -. start_time);
       Printf.printf "-------------------------------------\n";
+      boucle ()
+    | _ ->
+      Printf.printf "Choix invalide. Veuillez réessayer.\n";
+      boucle ()
+  in
+  boucle ()
+
+(** [tester_fichiers_repertoire dir] teste les graphes d'un répertoire. *)
+let tester_fichiers_repertoire dir =
+  let fichiers = Sys.readdir dir in
+  Array.sort String.compare fichiers;
+  let rec boucle () =
+    Printf.printf "Sélectionnez un fichier à tester :\n";
+    Array.iteri (fun i fichier ->
+      if Filename.check_suffix fichier ".col" then
+        Printf.printf "%d. %s\n" (i + 1) fichier
+    ) fichiers;
+    Printf.printf "0. Retour au menu principal\n";
+    Printf.printf "Votre choix : ";
+    match read_int_opt () with
+    | Some 0 -> Printf.printf "Retour au menu principal.\n"
+    | Some n when n > 0 && n <= Array.length fichiers ->
+      let fichier = fichiers.(n - 1) in
+      if Filename.check_suffix fichier ".col" then (
+        let chemin = Filename.concat dir fichier in
+        Printf.printf "Test du fichier : %s\n" chemin;
+        let graphe = lire_graphe chemin in
+        let start_time = Sys.time () in
+        let nb_couleurs = dsatur_with_tas graphe in
+        let end_time = Sys.time () in
+        Printf.printf "Nombre de couleurs utilisées : %d\n" nb_couleurs;
+        Printf.printf "Temps d'exécution : %.6f secondes\n" (end_time -. start_time);
+        Printf.printf "-------------------------------------\n";
+      ) else (
+        Printf.printf "Fichier invalide. Veuillez choisir un fichier .col\n";
+      );
       boucle ()
     | _ ->
       Printf.printf "Choix invalide. Veuillez réessayer.\n";
@@ -53,7 +92,7 @@ let menu_principal () =
       test_graphes ();
       boucle ()
     | Some 2 ->
-      FileMenu.tester_fichiers "test"; (* Répertoire des fichiers de test *)
+      tester_fichiers_repertoire "test"; (* Répertoire des fichiers de test *)
       boucle ()
     | _ ->
       Printf.printf "Choix invalide. Veuillez réessayer.\n";
