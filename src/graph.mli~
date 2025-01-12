@@ -1,0 +1,8 @@
+
+type voisin = int list
+type graphe = voisin array
+
+
+val lire_graphe : string -> graphe
+val desorienter_graphe : graphe -> graphe
+

@@ -1,0 +1,27 @@
+(** Type représentant un sommet avec son degré de saturation, son degré et son numéro. *)
+type sommet = {
+  mutable dsat : int;
+  degre : int;
+  numero : int;
+}
+
+(** Type représentant un tas binaire. *)
+type tas
+
+(** Crée un tas vide avec une capacité donnée. *)
+val creer_tas : int -> tas
+
+(** Insère un sommet dans le tas. *)
+val inserer : tas -> sommet -> unit
+
+(** Extrait le sommet avec la clé maximale (DSAT, puis degré) du tas. *)
+val extraire_max : tas -> sommet
+
+(** Augmente la clé d'un sommet dans le tas. *)
+val augmenter_cle : tas -> int -> int -> unit
+
+(** Retourne la taille actuelle du tas. *)
+val taille : tas -> int
+
+(** Retourne les données du tas sous forme d'un tableau. *)
+val obtenir_donnees : tas -> sommet array

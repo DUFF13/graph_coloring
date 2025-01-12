@@ -1,0 +1,6 @@
+*.cmo
+*.cmi
+*.exe
+*.o
+*.out
+graph_coloring

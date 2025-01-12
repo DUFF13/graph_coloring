@@ -1,0 +1,18 @@
+(* src/test_graphs.mli *)
+open Graph
+
+
+val graphe_complet_k5 : graphe
+(** Graphe complet à 5 sommets (K5). *)
+
+val graphe_biparti_k33 : graphe
+(** Graphe biparti complet K3,3. *)
+
+val graphe_cycle_c5 : graphe
+(** Graphe cycle impair C5. *)
+
+val graphe_etoile : graphe
+(** Graphe en étoile. *)
+
+val graphe_arbre_binaire : graphe
+(** Graphe arbre binaire parfait. *)

@@ -1,0 +1,51 @@
+(* main.ml *)
+
+open Graph
+open Dsatur
+open Io
+open Utils
+
+(** [afficher_menu graphes] affiche le menu pour sélectionner un graphe à tester. *)
+let afficher_menu graphes =
+  Printf.printf "Sélectionnez un graphe à tester :\n";
+  Array.iteri (fun i (nom, _) ->
+    Printf.printf "%d. %s\n" (i + 1) nom
+  ) graphes;
+  Printf.printf "0. Quitter\n";
+  Printf.printf "Votre choix : "
+
+(** [test_graphes ()] gère l'interaction utilisateur pour tester les graphes. *)
+let test_graphes () =
+  (* Liste des graphes disponibles avec leurs noms *)
+  let graphes = [|
+    ("Graphe complet K5", graphe_complet_k5);
+    ("Graphe biparti K3,3", graphe_biparti_k33);
+    ("Cycle impair C5", graphe_cycle_c5);
+    ("Graphe en étoile", graphe_etoile);
+    ("Graphe arbre binaire", graphe_arbre_binaire);
+    ("Graphe Myciel6", desorienter_graphe (lire_graphe "test/myciel6.col"))
+  |] in
+
+  let rec boucle () =
+    afficher_menu graphes;
+    let choix = read_int_opt () in
+    match choix with
+    | Some 0 -> Printf.printf "Au revoir !\n"
+    | Some n when n > 0 && n <= Array.length graphes ->
+      let (nom, graphe) = graphes.(n - 1) in
+      Printf.printf "Test du graphe : %s\n" nom;
+      let nb_couleurs = dsatur_with_tas graphe in
+      Printf.printf "Nombre de couleurs utilisées : %d\n" nb_couleurs;
+      Printf.printf "-------------------------------------\n";
+      boucle ()
+    | _ ->
+      Printf.printf "Choix invalide. Veuillez réessayer.\n";
+      boucle ()
+  in
+  boucle ()
+
+(** Point d'entrée principal du programme. *)
+let () =
+  Printf.printf "Début des tests\n";
+  test_graphes ();
+  Printf.printf "Fin des tests\n"

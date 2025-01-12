@@ -1,0 +1,10 @@
+(** Module pour gérer les graphes à partir de fichiers. *)
+
+(** [lister_fichiers repertoire] renvoie la liste des fichiers .col dans un répertoire donné. *)
+val lister_fichiers : string -> string list
+
+(** [tester_fichier fichier] lit et colore le graphe contenu dans un fichier. *)
+val tester_fichier : string -> unit
+
+(** [tester_fichiers repertoire] permet à l'utilisateur de tester des graphes depuis des fichiers. *)
+val tester_fichiers : string -> unit
