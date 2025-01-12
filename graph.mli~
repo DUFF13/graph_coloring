@@ -1,4 +1,0 @@
-type graphe = int list array
-
-val lire_graphe : string -> graphe
-val desorienter_graphe : graphe -> graphe
