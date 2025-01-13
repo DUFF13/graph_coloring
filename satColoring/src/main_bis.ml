@@ -11,14 +11,14 @@ let find_smallest_k n m edges =
     let start_gen = Unix.gettimeofday () in
     let sat_n, sat_m, sat_clauses = generate_kcoloring_sat_formula n m edges k in
     let end_gen = Unix.gettimeofday () in
-    Printf.printf "Formule CNF générée : %d variables, %d clauses. Temps de génération : %.3f s\n"
+    Printf.printf "Formule CNF générée : %d variables, %d clauses. Temps de génération : %.6f s\n"
       sat_n sat_m (end_gen -. start_gen);
 
     (* Démarrage du chronomètre pour la résolution *)
     let start_dpll = Unix.gettimeofday () in
     let result = dpll sat_clauses in
     let end_dpll = Unix.gettimeofday () in
-    Printf.printf "Résolution DPLL terminée. Temps de résolution : %.3f s\n" (end_dpll -. start_dpll);
+    Printf.printf "Résolution DPLL terminée. Temps de résolution : %.6f s\n" (end_dpll -. start_dpll);
 
     match result with
     | (true, solution) ->
@@ -32,20 +32,20 @@ let find_smallest_k n m edges =
 
 let main () =
   (* Nom du fichier DIMACS contenant le graphe *)
-  let filename = "test/myciel4.col" in
+  let filename = "test/queen6_6.col" in
 
   (* Mesurer le temps pour analyser le graphe *)
   let start_parse = Unix.gettimeofday () in
   let n, m, edges = parse_graph filename in
   let end_parse = Unix.gettimeofday () in
-  Printf.printf "Graphe lu : %d sommets, %d arêtes. Temps d'analyse : %.3f s\n"
+  Printf.printf "Graphe lu : %d sommets, %d arêtes. Temps d'analyse : %.6f s\n"
     n m (end_parse -. start_parse);
 
   (* Trouver le plus petit k et afficher le résultat *)
   let start_k = Unix.gettimeofday () in
   let k, solution = find_smallest_k n m edges in
   let end_k = Unix.gettimeofday () in
-  Printf.printf "Solution trouvée avec k = %d couleurs. Temps total : %.3f s\n"
+  Printf.printf "Solution trouvée avec k = %d couleurs. Temps total : %.6f s\n"
     k (end_k -. start_k);
 
   (* Afficher la solution *)

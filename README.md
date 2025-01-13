@@ -32,18 +32,22 @@ Ce projet est une implémentation de l'algorithme DSATUR pour la coloration de g
 ├── version_intermediaire
 │   ├── dsatur_glouton.ml
 ├── satColoring
-│   ├── quine_dpll.ml
-│   ├── quine_dpll.mli
-│   ├── sat_solver.ml
-│   ├── sat_solver.mli
-│   ├── dimacs_to_cnf.ml
-│   ├── dimacs_to_cnf.mli
-│   ├── sat_solver.ml
-│   ├── sat_solver.mli
+│   ├── Makefile
+│   ├── test
+│   ├── src
+│       ├── quine_dpll.ml
+│       ├── quine_dpll.mli
+│       ├── sat_solver.ml
+│       ├── sat_solver.mli
+│       ├── dimacs_to_cnf.ml
+│       ├── dimacs_to_cnf.mli
+│       ├── sat_solver.ml
+│       ├── sat_solver.mli
 ├── .gitignore
 ├── Makefile
 ├── README.md
-└── graphes_utilises.txt
+├─── graphes_utilises.txt
+└──
 
 
 ```
