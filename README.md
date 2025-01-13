@@ -104,13 +104,23 @@ Le fichier `Makefile` est conçu pour simplifier la compilation et l'exécution 
 
 Les dépendances dans le `Makefile` garantissent que les fichiers sont compilés dans le bon ordre, en fonction des relations entre modules (par exemple, `graph.ml` avant `dsatur.ml`).
 
-Pour utiliser les algorithmes SAT sur vos graphes, compilez les fichiers du répertoire `satColoring` Par exemple :
-(Il faut indiquer soi-même le graphe que l'on souhaite tester dans le fichier main_bis.ml et faire preuve de patience ...)
+Pour utiliser les algorithmes SAT sur vos graphes, compilez les fichiers du répertoire `satColoring` avec make:
+(Il faut indiquer soi-même le graphe que l'on souhaite tester dans le fichier main_bis.ml (et le rajouter dans le fichier test de ce répertoire ) et faire preuve de patience ...)
 
 ```bash
-ocamlc -o sat_solver_program satcoloring/sat_solver.ml satcoloring/quine_dpll.ml satcoloring/dimacs_to_cnf.ml main_bis.ml
-./sat_solver_program
+make
+./sat_coloring
 ```
+
+- Pour nettoyer les fichiers intermédiaires :
+  ```bash
+  make clean
+  ```
+
+- Pour supprimer tous les fichiers générés (y compris l'exécutable) :
+  ```bash
+  make mrproper
+  ```
 
 ## Fichier `graphes_utilises.txt`
 
