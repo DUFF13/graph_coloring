@@ -24,7 +24,7 @@ let find_smallest_k n m edges =
 
 let main () =
   (* Nom du fichier DIMACS contenant le graphe *)
-  let filename = "test/myciel4" in
+  let filename = "test/myciel4.col" in
 
   (* Parse le graphe à partir du fichier *)
   let n, m, edges = parse_graph filename in

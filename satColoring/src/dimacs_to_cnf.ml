@@ -80,11 +80,23 @@ let generate_kcoloring_sat_formula n m edges k =
 
   (!var_count - 1, List.length !clauses, !clauses)
 
-let export_dimacs n m clauses filename =
+(* let export_dimacs n m (clauses : cnf) filename =
   let out_channel = open_out filename in
   Printf.fprintf out_channel "p cnf %d %d\n" n m;
   List.iter (fun clause ->
     List.iter (fun lit -> Printf.fprintf out_channel "%d " lit) clause;
+    Printf.fprintf out_channel "0\n"
+  ) clauses;
+  close_out out_channel *)
+
+let export_dimacs n m (clauses : Sat_solver.cnf) filename =
+  let out_channel = open_out filename in
+  Printf.fprintf out_channel "p cnf %d %d\n" n m;
+  List.iter (fun clause ->
+    List.iter (function
+      | Var v -> Printf.fprintf out_channel "%d " v
+      | NVar v -> Printf.fprintf out_channel "-%d " v
+    ) clause;
     Printf.fprintf out_channel "0\n"
   ) clauses;
   close_out out_channel
