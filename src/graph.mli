@@ -28,7 +28,6 @@ val lire_graphe : string -> graphe
 
 (** 
   [desorienter_graphe g] transforme un graphe orienté en un graphe non orienté. Nécessaire pour le bon fonctionnement de DSATUR
-  Nous avons un problème lorsque le fichier dimacs contient les arrêtes (u -> v) et (v -> u) mais n'avons pas réussi à le résoudre.
   @param g Un graphe représenté sous forme de listes d'adjacence.
   @return Un graphe non orienté, où chaque arête est bidirectionnelle (si [u -> v] existe, [v -> u] sera ajouté).
   
