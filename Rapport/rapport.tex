@@ -271,8 +271,8 @@ Avant cette amélioration, l’algorithme stagnait sur des graphes de taille mod
 
 L'intégration du tas binaire a toutefois introduit de nouveaux défis :
 \begin{itemize}
-    \item **Mise à jour des priorités** : chaque fois qu’un sommet était coloré, il fallait réorganiser le tas pour refléter les nouvelles saturations des sommets voisins.
-    \item **Gestion des champs mutables** : des erreurs pouvaient survenir si les champs des sommets n’étaient pas correctement synchronisés avec leur position dans le tas.
+    \item Mise à jour des priorités : chaque fois qu’un sommet était coloré, il fallait réorganiser le tas pour refléter les nouvelles saturations des sommets voisins.
+    \item Gestion des champs mutables : des erreurs pouvaient survenir si les champs des sommets n’étaient pas correctement synchronisés avec leur position dans le tas.
 \end{itemize}
 
 Ces problèmes ont été résolus en testant intensivement chaque fonction manipulant le tas et en vérifiant systématiquement la cohérence des données sur des graphes de petite taille.
